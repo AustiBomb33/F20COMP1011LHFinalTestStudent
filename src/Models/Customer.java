@@ -8,8 +8,22 @@ public class Customer {
     private String gender, firstName, lastName, streetAddress, city, province, postalCode, emailAddress, ccType, bloodType, phoneNumber;
     ArrayList<Product> Purchases;
 
-    public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, ArrayList<Product> Purchases){
-
+    public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, ArrayList<Product> purchases){
+setId(id);
+        setPounds(pounds);
+        setHeightInCM(heightInCM);
+        setGender(gender);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setStreetAddress(streetAddress);
+        setCity(city);
+        setProvince(province);
+        setPostalCode(postalCode);
+        setEmailAddress(emailAddress);
+        setCcType(ccType);
+        setBloodType(bloodType);
+        setPhoneNumber(phoneNumber);
+        setPurchases(purchases);
     }
 
     public void setBloodType(String bloodType) {
