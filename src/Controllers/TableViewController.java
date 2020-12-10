@@ -79,6 +79,9 @@ public class TableViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fillTableView();
+        tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            fillListView(tableView.getItems().get((int)newValue));
+        });
     }
 
     void fillTableView(){
@@ -89,6 +92,10 @@ public class TableViewController implements Initializable {
         totalPurchaseColumn.setCellValueFactory(new PropertyValueFactory<>("totalPurchasesString"));
         tableView.getItems().addAll(JSONUtility.getCustomersFromJSON());
         rowsInTableLabel.setText(""+tableView.getItems().size());
+    }
+
+    void fillListView(Customer customer){
+        purchaseListView.getItems().addAll(customer.getPurchases());
     }
 
 }
