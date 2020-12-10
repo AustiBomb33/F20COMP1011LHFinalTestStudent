@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -92,8 +93,16 @@ public class TableViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initTableView();
         loadAllCustomers();
+
         tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             fillListView(tableView.getItems().get((int) newValue));
+        });
+
+        purchaseListView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if(purchaseListView.getItems().size() != 0){
+                setImageView(purchaseListView.getItems().get((int)newValue).getImageURL());
+                System.out.println(purchaseListView.getItems().get((int)newValue).getImageURL());
+            }
         });
     }
 
@@ -106,11 +115,19 @@ public class TableViewController implements Initializable {
     }
 
     void fillListView(Customer customer) {
+        purchaseListView.getSelectionModel().select(0);
+        imageView.setVisible(false);
         purchaseListView.getItems().clear();
         purchaseListView.getItems().addAll(customer.getPurchases());
         saleLabel.setText("Total Spent: " + customer.getTotalPurchasesString());
         msrpLabel.setText("Total Regular: " + customer.getTotalMSRPString());
         savingsLabel.setText("Total Saved: " + customer.getTotalSavingsString());
+    }
+
+    void setImageView(String imageURL){
+        imageView.setVisible(true);
+        Image img = new Image(imageURL);
+        imageView.setImage(img);
     }
 
 }
