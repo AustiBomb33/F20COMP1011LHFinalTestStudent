@@ -13,8 +13,8 @@ public class Customer {
     private String gender, firstName, lastName, streetAddress, city, province, postalCode, emailAddress, ccType, bloodType, phoneNumber;
     private ArrayList<Product> purchases;
 
-        public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, Product[] purchases){
-setId(id);
+    public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, Product[] purchases) {
+        setId(id);
         setPounds(pounds);
         setHeightInCM(heightInCM);
         setGender(gender);
@@ -94,9 +94,10 @@ setId(id);
         this.streetAddress = streetAddress;
     }
 
-    public String getTotalPurchasesString(){
-            return String.format("$%.2f", getTotalPurchases());
+    public String getTotalPurchasesString() {
+        return String.format("$%.2f", getTotalPurchases());
     }
+
     public ArrayList<Product> getPurchases() {
         return purchases;
     }
@@ -157,16 +158,20 @@ setId(id);
         return streetAddress;
     }
 
-    public double getTotalPurchases(){
-            return getPurchases().stream().mapToDouble(Product::getSalePrice).sum();
+    public double getTotalPurchases() {
+        return getPurchases().stream().mapToDouble(Product::getSalePrice).sum();
     }
 
-    public double getTotalSavings(){
-            return getPurchases().stream().mapToDouble(Product::getRegularPrice).sum() - getTotalPurchases();
+    public double getTotalSavings() {
+        return getPurchases().stream().mapToDouble(Product::getRegularPrice).sum() - getTotalPurchases();
     }
 
-    public boolean savedLots(){
-            return getTotalSavings() > 5.0;
+    public boolean savedLots() {
+        return getTotalSavings() > 5.0;
+    }
+
+    public String getTotalMSRPString() {
+        return String.format("$%.2f", getPurchases().stream().mapToDouble(Product::getRegularPrice).sum());
     }
 
     @Override
@@ -188,5 +193,10 @@ setId(id);
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", Purchases=" + purchases +
                 '}';
+    }
+
+
+    public String getTotalSavingsString() {
+        return String.format("$%.2f", getTotalSavings());
     }
 }
