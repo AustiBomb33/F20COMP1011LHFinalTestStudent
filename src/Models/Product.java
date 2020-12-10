@@ -72,13 +72,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", salePrice=" + salePrice +
-                ", regularPrice=" + regularPrice +
-                ", name='" + name + '\'' +
-                ", sku='" + sku + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                '}';
+        return String.format("Product Name: %s, Price Paid: $%.2f", name, salePrice);
     }
 }
