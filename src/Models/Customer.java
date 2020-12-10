@@ -158,6 +158,10 @@ setId(id);
             return getPurchases().stream().mapToDouble(Product::getRegularPrice).sum() - getTotalPurchases();
     }
 
+    public boolean savedLots(){
+            return getTotalSavings() > 5.0;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
