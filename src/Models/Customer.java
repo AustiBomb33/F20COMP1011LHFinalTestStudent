@@ -1,14 +1,15 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Customer {
     private int id;
     private double pounds, heightInCM;
     private String gender, firstName, lastName, streetAddress, city, province, postalCode, emailAddress, ccType, bloodType, phoneNumber;
-    ArrayList<Product> Purchases;
+    ArrayList<Product> purchases;
 
-    public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, ArrayList<Product> purchases){
+        public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, Product[] purchases){
 setId(id);
         setPounds(pounds);
         setHeightInCM(heightInCM);
@@ -23,6 +24,7 @@ setId(id);
         setCcType(ccType);
         setBloodType(bloodType);
         setPhoneNumber(phoneNumber);
+        this.purchases = new ArrayList();
         setPurchases(purchases);
     }
 
@@ -78,8 +80,10 @@ setId(id);
         this.province = province;
     }
 
-    public void setPurchases(ArrayList<Product> purchases) {
-        Purchases = purchases;
+    public void setPurchases(Product[] purchases) {
+        Arrays.asList(purchases).forEach(product -> {
+            this.purchases.add(product);
+        });
     }
 
     public void setStreetAddress(String streetAddress) {
@@ -87,7 +91,7 @@ setId(id);
     }
 
     public ArrayList<Product> getPurchases() {
-        return Purchases;
+        return purchases;
     }
 
     public double getHeightInCM() {
@@ -163,7 +167,7 @@ setId(id);
                 ", ccType='" + ccType + '\'' +
                 ", bloodType='" + bloodType + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", Purchases=" + Purchases +
+                ", Purchases=" + purchases +
                 '}';
     }
 }
