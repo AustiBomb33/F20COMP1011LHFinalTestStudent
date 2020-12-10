@@ -62,7 +62,6 @@ public class TableViewController implements Initializable {
 
     @FXML
     private void top10Customers() {
-        tableView.getSelectionModel().clearSelection();
         tableView.getItems().clear();
         tableView.getItems().addAll(JSONUtility.getCustomersFromJSON()
                 .stream()
@@ -75,7 +74,6 @@ public class TableViewController implements Initializable {
 
     @FXML
     private void customersSavedOver5() {
-        tableView.getSelectionModel().clearSelection();
         tableView.getItems().clear();
         tableView.getItems().addAll(JSONUtility.getCustomersFromJSON().stream().filter(Customer::savedLots).collect(Collectors.toList()));
         rowsInTableLabel.setText("" + tableView.getItems().size());
@@ -83,7 +81,6 @@ public class TableViewController implements Initializable {
 
     @FXML
     private void loadAllCustomers() {
-        tableView.getSelectionModel().clearSelection();
         tableView.getItems().clear();
         tableView.getItems().addAll(JSONUtility.getCustomersFromJSON());
         rowsInTableLabel.setText("" + tableView.getItems().size());
@@ -95,13 +92,14 @@ public class TableViewController implements Initializable {
         loadAllCustomers();
 
         tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            fillListView(tableView.getItems().get((int) newValue));
+            if (tableView.getItems().size() != 0) {
+                fillListView(tableView.getItems().get((int) newValue));
+            }
         });
 
         purchaseListView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            if(purchaseListView.getItems().size() != 0){
-                setImageView(purchaseListView.getItems().get((int)newValue).getImageURL());
-                System.out.println(purchaseListView.getItems().get((int)newValue).getImageURL());
+            if (purchaseListView.getItems().size() != 0) {
+                setImageView(purchaseListView.getItems().get((int) newValue).getImageURL());
             }
         });
     }
@@ -124,7 +122,7 @@ public class TableViewController implements Initializable {
         savingsLabel.setText("Total Saved: " + customer.getTotalSavingsString());
     }
 
-    void setImageView(String imageURL){
+    void setImageView(String imageURL) {
         imageView.setVisible(true);
         Image img = new Image(imageURL);
         imageView.setImage(img);
