@@ -150,8 +150,12 @@ setId(id);
         return streetAddress;
     }
 
-    public Double getTotalPurchases(){
+    public double getTotalPurchases(){
             return getPurchases().stream().mapToDouble(Product::getSalePrice).sum();
+    }
+
+    public double getTotalSavings(){
+            return getPurchases().stream().mapToDouble(Product::getRegularPrice).sum() - getTotalPurchases();
     }
 
     @Override
