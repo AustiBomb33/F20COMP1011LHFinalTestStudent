@@ -11,7 +11,7 @@ public class Customer {
     private int id;
     private double pounds, heightInCM;
     private String gender, firstName, lastName, streetAddress, city, province, postalCode, emailAddress, ccType, bloodType, phoneNumber;
-    ArrayList<Product> purchases;
+    private ArrayList<Product> purchases;
 
         public Customer(int id, double pounds, double heightInCM, String gender, String firstName, String lastName, String streetAddress, String city, String province, String postalCode, String emailAddress, String ccType, String bloodType, String phoneNumber, Product[] purchases){
 setId(id);
@@ -94,6 +94,9 @@ setId(id);
         this.streetAddress = streetAddress;
     }
 
+    public String getTotalPurchasesString(){
+            return String.format("$%.2f", getTotalPurchases());
+    }
     public ArrayList<Product> getPurchases() {
         return purchases;
     }
