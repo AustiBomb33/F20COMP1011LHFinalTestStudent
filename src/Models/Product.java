@@ -1,3 +1,7 @@
+
+//Austin Marcoux
+//1099028
+
 package Models;
 
 import com.google.gson.annotations.SerializedName;
