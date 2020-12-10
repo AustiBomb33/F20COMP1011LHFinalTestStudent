@@ -150,6 +150,10 @@ setId(id);
         return streetAddress;
     }
 
+    public Double getTotalPurchases(){
+            return getPurchases().stream().mapToDouble(Product::getSalePrice).sum();
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
